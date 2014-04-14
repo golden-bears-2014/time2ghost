@@ -1,5 +1,7 @@
 class TripsController < ApplicationController
-include SessionHelper
+  include SessionHelper
+  before_filter :require_login, [:show, :new, :create]
+
 
   def show
     @trip = Trip.find(params[:id])
@@ -32,5 +34,15 @@ include SessionHelper
     @trip.save
     redirect_to trip_path(@trip)
   end
+
+
+   private
+
+   def require_login
+     unless logged_in?
+       flash[:error] = "You must be logged in to access this section"
+       redirect_to root_path # halts request cycle
+     end
+   end
 
 end
