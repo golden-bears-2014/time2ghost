@@ -33,13 +33,17 @@ Geolocate.Controller.prototype = {
   },
 
   onSuccess: function(position){
+    Geolocate.Controller.prototype.reverseGeolocation(position)
+  },
+
+  reverseGeolocation: function(position){
     var coords = position.coords.latitude + "," + position.coords.longitude;
     $.ajax({
       type: 'GET',
       url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords + "&sensor=false"
 
     }).done(function(response){
-      address = response.results[0].formatted_address
+      var address = response.results[0].formatted_address
       $("#geolocateButton").html("Found you :)");
       $("#trip_current_location").val(address);
     })
@@ -65,5 +69,6 @@ Geolocate.Controller.prototype = {
 
 $(document).ready(function(){
   geoloc = new Geolocate();
+
 });
 
