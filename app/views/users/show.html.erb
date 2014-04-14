@@ -6,5 +6,6 @@
       <div class="userinfo"><%= @user.email %></div>
       phone:<br><div class="userinfo"><%= @user.format_phone_number %></div>
       walkin' speed:<br> <div class="userinfo"><%= @user.walk_speed %></div>
+      <%= render "my_trips", :user => @user %>
 </div>
 </div>
