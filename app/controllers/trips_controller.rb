@@ -30,9 +30,14 @@ class TripsController < ApplicationController
 
   def create_fake
     @trip = Trip.new(params[:trip])
-    @trip.format_fake_trip(params[:time2go])
-    @trip.save
-    redirect_to trip_path(@trip)
+    if @trip.save
+      correct_user.trips << @trip
+      @trip.format_fake_trip(params[:time2go])
+      redirect_to trip_path(@trip)
+    else
+      flash[:error] = "Trip creation error"
+      render :new
+    end
   end
 
 
