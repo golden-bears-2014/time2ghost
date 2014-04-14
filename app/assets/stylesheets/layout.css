@@ -3,11 +3,12 @@
 
 html{
   font-family: 'Lato', sans-serif;
-  background: url("shattered.png");
+  /*background: url("shattered.png");*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-color: #E9F7F7;
 }
 
 .content{

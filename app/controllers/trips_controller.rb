@@ -22,9 +22,15 @@ include SessionHelper
     end
   end
 
+  def new_fake
+    @trip = Trip.new
+  end
+
   def create_fake
     @trip = Trip.new(params[:trip])
-
+    @trip.format_fake_trip(params[:time2go])
+    @trip.save
+    redirect_to trip_path(@trip)
   end
 
 end
