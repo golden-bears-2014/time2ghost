@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
+# I would really like to see you create a method object that does this work.
 stations = open('http://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8V') {|xml| xml.read}
 
 parsed_stations = Nokogiri::XML(stations).xpath('//station')

@@ -1,3 +1,7 @@
 
+<%# Uh, isn't there a button helper built-in?  Why are you doing this? %>
+<%# As an alternative you could use link_to with a block %>
+<%# look into content_tag as an alternative%>
+
 <%= link_to raw("<button>new trip</button>"), new_trip_path %>
 <%= link_to raw("<button>my profile</button>"), '/profile' %>

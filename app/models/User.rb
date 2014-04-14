@@ -1,3 +1,4 @@
+# Why capital [U]ser
 class User < ActiveRecord::Base
   has_secure_password
   attr_accessible :username, :walk_speed, :phone_number, :email, :password

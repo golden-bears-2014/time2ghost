@@ -13,6 +13,7 @@ describe UsersController do
   context "#new" do
     it "makes empty user for new user form" do
       get :new
+      # Is this really a useful test?
       expect(assigns(:user).attributes).to eq(User.new.attributes)
     end
   end

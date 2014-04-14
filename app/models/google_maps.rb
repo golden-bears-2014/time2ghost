@@ -1,3 +1,11 @@
+# Seriously, do you have an allergy to `initialize` methods?
+#
+# Please explain your model of "we never instantiate anything."
+#
+# The fact that you keep fixating on these self methods makes me beleive you
+# have never heard of the pattern known as METHOD OBJECT:
+#
+# http://refactoring.com/catalog/replaceMethodWithMethodObject.html
 class GoogleMaps
   require 'uri'
 
@@ -8,10 +16,21 @@ class GoogleMaps
   end
 
   def self.get_total_walking_time(gmaps_returned_json)
+    # these names suck.
+    # this is brittle
+    # what does this dereferencing snarl mean?  is it "duration of the first
+    # leg's route?  Why not make a method that returns this datum?  This is
+    # super-brittle.
+    #
+    # I'm detecking the code smell known as PRIMITIVE OBSESSION here.  You're
+    # keeping this hash noise around, it would be so much better if these
+    # primitive data were wrapped in an object that has decent names (not sucky
+    # names).
     gmaps_returned_json["routes"][0]["legs"][0]["duration"]["value"] / 60
   end
 
   def self.parse_directions(gmaps_returned_json)
+    # Dudes.  Seriously.  http://www.ruby-doc.org/core-2.1.1/Enumerable.html
     directions = []
     gmaps_returned_json["routes"][0]["legs"][0]["steps"].each do |step|
       directions << step["html_instructions"]
