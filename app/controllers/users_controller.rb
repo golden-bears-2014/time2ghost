@@ -28,6 +28,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
 
+  def update
+    @user = User.find(params[:id])
+    p params
+    p "$" * 50
+    @user.update_attributes(params[:user])
+    # @user.username = params[:user][:username]
+    # @user.password = params[:user][:password]
+    # @user.email = params[:user][:email]
+    if @user.save
+      redirect_to user_path, notice: 'User was successfully updated.'
+    else
+      render action: 'edit'
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path
+  end
 
 end
