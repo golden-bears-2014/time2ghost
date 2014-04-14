@@ -1,3 +1,12 @@
+/*
+ *
+ * This is terrible.
+ *
+ * This is hacker-grade.  There is no elegance in this.  Can you honestly say
+ * that this looks good?
+ */
+
+
 $( function() {
       $("#new_user[type='submit']").prop("disabled", true); // disable the submit button
       $("#user_phone_number").formance("format_phone_number") // setup the formatter

@@ -10,6 +10,9 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+// You have a problem here:  Load your index page and count how many jquery
+// files you include :(
+//
 //= require jquery
 //= require jquery_ujs
 //= require_tree .

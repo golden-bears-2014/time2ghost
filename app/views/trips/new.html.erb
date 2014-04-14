@@ -1,6 +1,7 @@
 <div class="content">
 <div class="tripform">
   <%= button_tag "Find Me", id: "geolocateButton", remote: true%>
+  <%# could you use the form partial in homepage/ instead of this? %>
   <%= form_for Trip.new do |f| %>
     <%= f.label :current_location %>:
     <br>

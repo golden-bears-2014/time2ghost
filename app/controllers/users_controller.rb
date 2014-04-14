@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Are you adding blank whitespace for style points?
 
 
 end

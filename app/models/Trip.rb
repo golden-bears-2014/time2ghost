@@ -1,3 +1,8 @@
+# I hate this class so much.  It's doing way too much, it makes me mad.  It's
+# confusing.  I'm .... sad looking at it.
+#
+#  This 5 magic number irritates me.  Why is update_departure_time on this
+#  class?  I don't even....know what you're trying to do.  You confuse me.
 class Trip < ActiveRecord::Base
   attr_accessible :user_id, :departure_station, :destination_station, :walking_time, :directions,
   :train_departing_time, :bart_line, :recommended_leave_time, :current_location
@@ -21,10 +26,12 @@ class Trip < ActiveRecord::Base
     self.save!
   end
 
+  # What is this about?
   def self.get_trips_for_current_minute
     @trips = Trip.where("recommended_leave_time = ?", Time.now.change(:sec => 0))
   end
 
+  # How does a trip know this?
   def find_closest_station(user_lat, user_long)
     stations = Station.all
     closest_bart_distance = stations.first.distance_to(user_lat, user_long)

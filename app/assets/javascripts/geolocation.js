@@ -1,3 +1,6 @@
+/* OH my goodness, how is this so nice, but forms.js so painful? */
+
+
 var Geolocate = function() {
   var binder = new Geolocate.Binder();
   binder.bind();
@@ -57,6 +60,7 @@ Geolocate.Controller.prototype = {
 };
 
 $(document).ready(function(){
+  // Does anyone actually use the window.geoloc object?
   geoloc = new Geolocate();
 });
 
