@@ -7,18 +7,18 @@
   </div>
 
   <%= form_for @user do |f| %>
-    <%= f.label :username %>:
+    <%= f.label :username %>:<br>
     <%= f.text_field :username, autofocus: true, placeholder: "username" %><br />
 
-    <%= f.label :password %>:
+    <%= f.label :password %>:<br>
     <%= f.password_field :password, placeholder: "password" %><br />
 
 <div class="phone-number">
-    <%= f.label :phone_number %>:
+    <%= f.label :phone_number %>:<br>
     <%= f.telephone_field :phone_number, placeholder: "(xxx)xxx-xxxx" %><br />
 </div>
-    <%= f.label :email %>:
-    <%= f.text_field :email %><br />
+    <%= f.label :email %>:<br>
+    <%= f.text_field :email, placeholder: "user@email.com"%><br />
 
     <%= f.submit id: "new_user"%>
   <% end %>
