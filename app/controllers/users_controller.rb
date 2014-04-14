@@ -34,8 +34,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    p params
-    p "$" * 50
     @user.update_attributes(params[:user])
     # @user.username = params[:user][:username]
     # @user.password = params[:user][:password]
