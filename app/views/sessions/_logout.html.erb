@@ -1,6 +1,5 @@
 <% if logged_in? %>
-<div class="logout">
+<div class="logout-form">
       <%= button_to "Log Out", {:controller => :sessions, :action => "destroy", :id => session[:user_id]}, {:method => :delete} %>
 </div>
-<% end
-%>
+<% end %>

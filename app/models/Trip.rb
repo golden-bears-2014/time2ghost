@@ -25,6 +25,7 @@ class Trip < ActiveRecord::Base
     @trips = Trip.where("recommended_leave_time = ?", Time.now.change(:sec => 0))
   end
 
+
   def find_closest_station(user_lat, user_long)
     stations = Station.all
     closest_bart_distance = stations.first.distance_to(user_lat, user_long)
@@ -70,5 +71,4 @@ class Trip < ActiveRecord::Base
     gmaps_json = GoogleMaps.http_get_directions(origin, destination)
     GoogleMaps.get_total_walking_time(gmaps_json)
   end
-
 end

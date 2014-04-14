@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
     "(#{phone[0, 3]}) #{phone[3, 3]}-#{phone[6, 4]}"
   end
 
+  def trips_in_the_future
+    self.trips.where("recommended_leave_time > ?", Time.now)
+  end
 end
