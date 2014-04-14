@@ -1,17 +1,10 @@
 <div class="content">
-  <h1>
-    profile for <%= @user.username %>
-  </h1>
+  <div id="profile">
+    profile for <div class="userinfo"><%= @user.username %></div>
 
-  <ul class="list-no-decoration">
-    <li>
-      Email: <%= @user.email %>
-    </li>
-    <li>
-      Phone number: <%= @user.phone_number %>
-    </li>
-    <li>
-      Walk speed: <%= @user.walk_speed %>
-    </li>
-  </ul>
+      email<br>
+      <div class="userinfo"><%= @user.email %></div>
+      phone:<br><div class="userinfo"><%= @user.format_phone_number %></div>
+      walkin' speed:<br> <div class="userinfo"><%= @user.walk_speed %></div>
+</div>
 </div>

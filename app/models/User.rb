@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   validates :password, length: { in: 6..50 }
   has_many :trips
 
+  def format_phone_number
+    phone = self.phone_number
+    "(#{phone[0, 3]}) #{phone[3, 3]}-#{phone[6, 4]}"
+  end
 end
