@@ -40,13 +40,16 @@ Geolocate.Controller.prototype = {
     var coords = position.coords.latitude + "," + position.coords.longitude;
     $.ajax({
       type: 'GET',
-      url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords + "&sensor=false"
-
+      url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords + "&sensor=false&key=AIzaSyBxh8vE1E5HfT5-TYUMWKcuR-ojA77G65U"
     }).done(function(response){
       var address = response.results[0].formatted_address
-      $("#geolocateButton").html("Found you :)");
+      $("#geolocateButton").html("Found you and closest departure station :)");
       $("#trip_current_location").val(address);
-    })
+      var bStations = new BartStations();
+      bStations.getClosestBart(position.coords.latitude, position.coords.longitude);
+    }).fail(function(response, error) {
+      console.log(error);
+    });
   },
 
   showError: function(error) {
@@ -67,8 +70,55 @@ Geolocate.Controller.prototype = {
   }
 };
 
+var BartStations = function() {
+
+};
+
+BartStations.prototype = {
+
+  getClosestBart: function(userLatitude, userLongitude){
+    $.ajax({
+      type: 'GET',
+      url: "/stations"
+    }).done(function(response){
+      var closestStationAbbr = this.algorithmFindClosest(response, userLatitude, userLongitude);
+      $('#trip_departure_station').val(closestStationAbbr)
+    }.bind(this));
+  },
+
+  algorithmFindClosest: function(stations, userLatitude, userLongitude){
+    var differencesArray = this.getArrayOfDifferences(stations, userLatitude, userLongitude);
+    var indexOfSmallest = this.findIndexOfSmallestElement(differencesArray);
+
+    return stations[indexOfSmallest]["abbr"];
+  },
+
+  getArrayOfDifferences: function(stations, userLatitude, userLongitude) {
+    var differences = [];
+    for (var stationIndex in stations) {
+      var latDiff = Math.abs(userLatitude - stations[stationIndex]["latitude"]);
+      var longDiff = Math.abs(userLongitude - stations[stationIndex]["longitude"]);
+      differences[stationIndex] = latDiff + longDiff;
+    }
+
+    return differences;
+  },
+
+  findIndexOfSmallestElement: function(differencesArray) {
+    var smallest = differencesArray[0];
+    var smallestIndex = 0
+    for (var diffIndex in differencesArray) {
+      if (differencesArray[diffIndex] < smallest) {
+        smallest = differencesArray[diffIndex];
+        smallestIndex = diffIndex;
+      }
+    }
+
+    return smallestIndex;
+  }
+}
+
 $(document).ready(function(){
   geoloc = new Geolocate();
-
 });
 
