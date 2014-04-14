@@ -48,24 +48,7 @@ class BartTrip < ActiveRecord::Base
     self.update_attributes(:train_departing_time => fake_depart_time)
   end
 
-
-  def find_closest_station(user_lat, user_long)
-    stations = Station.all
-    closest_bart_distance = stations.first.distance_to(user_lat, user_long)
-    closest_station = stations.first
-    stations.each do |station|
-      station_distance = station.distance_to(user_lat, user_long)
-      if station_distance < closest_bart_distance
-        closest_bart_distance = station_distance
-        closest_station = station
-      end
-    end
-    closest_station
-  end
-
-  # private
-
-
+  private
   def set_recommended_leave_time(suggested_leave_time_in_minutes_from_now)
     self.recommended_leave_time = remove_seconds_from_time(Time.now + suggested_leave_time_in_minutes_from_now.minutes)
   end
