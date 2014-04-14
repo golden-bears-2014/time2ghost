@@ -21,4 +21,10 @@ include SessionHelper
       render :new
     end
   end
+
+  def create_fake
+    @trip = Trip.new(params[:trip])
+
+  end
+
 end
