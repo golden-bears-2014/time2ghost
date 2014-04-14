@@ -2,6 +2,7 @@ Time2ghost::Application.routes.draw do
   root :to => 'homepage#index'
   resources :trips
   resources :users
+  resources :stations, :only => [:index]
   resources :sessions, :only => [:create, :destroy]
   get 'twiliotest', to: 'twilio#show'
   get '/profile', to: 'users#profile'
