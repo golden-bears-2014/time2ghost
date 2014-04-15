@@ -38,6 +38,7 @@ class RealtimeBartDepartures
     departure_times_hash = {}
     departure_times_hash[:endpoint] = @endpoint
     departure_times_hash[:departure_times] = departure_times_array
+    departure_times_hash
   end
 
   def get_realtime_departure_xml

@@ -12,8 +12,6 @@ module ApplicationHelper
     number.to_i.minutes
   end
 
-
-
   def format_time(time)
     time.strftime("%l:%M %P")
   end

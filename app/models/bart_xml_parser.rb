@@ -11,7 +11,7 @@ class BartXMLParser
     path = Nokogiri::XML(realtime_xml).xpath('//etd')
     correct_destination = path.xpath("//abbreviation[contains(text(), '#{endpoint}')]").first.parent()
     departure_times = correct_destination.search('minutes').inject([]){ |all_times, departure_time| all_times << departure_time.text}
-    departure_times << endpoint
+    departure_times
   end
 
   def self.parse_bart_stations_list(stations_xml)
