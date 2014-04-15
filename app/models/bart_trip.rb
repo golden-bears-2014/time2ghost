@@ -48,7 +48,6 @@ class BartTrip < ActiveRecord::Base
     self.update_attributes(:train_departing_time => fake_depart_time)
   end
 
-  private
   def set_recommended_leave_time(suggested_leave_time_in_minutes_from_now)
     self.recommended_leave_time = remove_seconds_from_time(Time.now + suggested_leave_time_in_minutes_from_now.minutes)
   end
