@@ -99,7 +99,7 @@ BartStations.prototype = {
     }).done(function(response){
       return response.results[0].geometry.location
     })
-  },;
+  },
 
   algorithmFindClosest: function(stations, userLatitude, userLongitude){
     var differencesArray = this.getArrayOfDifferences(stations, userLatitude, userLongitude);
