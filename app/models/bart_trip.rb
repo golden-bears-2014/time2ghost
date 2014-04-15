@@ -4,11 +4,20 @@ class BartTrip < ActiveRecord::Base
   belongs_to :user
 
   def update_departure_time
-    set_walking_time
-    get_depart_times_and_line
-    get_minutes_until_train_departs
-    set_train_departing_time
-    suggested_leave_time_in_minutes_from_now = minutes_until_departure - walking_time - 5
+    depart_station_obj = get_station(self.departure_station)
+
+    gmaps = GoogleMaps.new
+    gmaps.http_get_directions(current_location, depart_station_obj.gmap_destination_string)
+    self.walking_time = gmaps.get_total_walking_time
+
+    potential_depart_times = get_depart_times_and_line
+
+    minutes_until_departure = get_minutes_until_train_departs(potential_depart_times)
+
+    set_train_departing_time(minutes_until_departure)
+
+    suggested_leave_time_in_minutes_from_now = minutes_until_departure - self.walking_time - 5
+
     set_recommended_leave_time(suggested_leave_time_in_minutes_from_now)
     self.save!
   end
@@ -68,7 +77,9 @@ class BartTrip < ActiveRecord::Base
   end
 
   def get_walking_time_to_station(origin, destination)
-    gmaps_json = GoogleMaps.http_get_directions(origin, destination)
-    GoogleMaps.get_total_walking_time(gmaps_json)
+    GoogleMaps.new.http_get_directions(origin, destination).get_total_walking_time
+
+    # gmaps_json = GoogleMaps.http_get_directions(origin, destination)
+    # GoogleMaps.get_total_walking_time(gmaps_json)
   end
 end
