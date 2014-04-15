@@ -1,7 +1,4 @@
-var Geolocate = function() {
-  var binder = new Geolocate.Binder();
-  binder.bind();
-};
+var Geolocate = function() {};
 
 Geolocate.Binder = function() {
   this.controller = new Geolocate.Controller();
@@ -146,7 +143,8 @@ BartStations.prototype = {
 
 
 $(document).ready(function(){
-  geoloc = new Geolocate();
+  var geobinder = new Geolocate.Binder();
+  geobinder.bind();
   bartloc = new BartStations();
   bartloc.bind();
 });
