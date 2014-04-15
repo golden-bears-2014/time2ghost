@@ -26,7 +26,7 @@ describe UsersController do
 
     it "redirects after creating new user" do
       post :create, :user => FactoryGirl.attributes_for(:user)
-      expect(response).to be_redirect
+      expect(response).to redirect_to(:root)
     end
   end
 end
