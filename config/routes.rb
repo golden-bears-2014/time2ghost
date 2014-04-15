@@ -5,7 +5,7 @@ Time2ghost::Application.routes.draw do
   resources :bart_trips
   resources :users
   resources :stations, :only => [:index]
-  resources :sessions, :only => [:create, :destroy]
+  resources :sessions, :only => [:create, :destroy, :new]
   get 'twiliotest', to: 'twilio#show'
   get '/profile', to: 'users#profile'
   match 'new-fake-trip' => 'bart_trips#new_fake', :as => 'new_fake_trip'
