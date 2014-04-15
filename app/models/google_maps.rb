@@ -16,12 +16,7 @@ class GoogleMaps
   end
 
   def parse_directions
-    directions = []
-    @parsed_response["routes"][0]["legs"][0]["steps"].each do |step|
-      directions << step["html_instructions"]
-    end
-
-    directions
+    @parsed_response["routes"][0]["legs"][0]["steps"].each_with_object([]) { |step, array| array << step["html_instructions"]}
   end
 
   def assemble_directions_request(origin, destination)
