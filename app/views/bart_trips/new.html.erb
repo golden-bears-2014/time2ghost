@@ -13,7 +13,7 @@
 <br>
     <%= f.label :destination_station %>:
     <%= f.collection_select(:destination_station, Station.all, :abbr, :name, :include_blank => true) %>
-    <%= f.submit "Create" %>
+    <%= f.submit "Create", :class => "homepage-button" %>
   <% end %>
 
 </div>
