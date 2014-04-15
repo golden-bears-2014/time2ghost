@@ -24,19 +24,36 @@
     margin-left: 0em;
 
   }
-  form { width: 70%;
-      margin: 0 auto; }
+  form {
+      width: 70%;
+      margin: 0 auto;
+    }
   form textarea,
-  form input { width: 100%; }
+  form input {
+    width: 100%;
+  }
 
   .navbar h1{
     font-size: 2em;
     font-family: 'Buda', cursive;
   }
 
-.homepage-button{
+  form input[type=submit]{
   font-size: 1em;
-}
+  width: 200px;
+  left: 40px;
+  }
+
+  #link{
+    font-size: 20px;
+    width: 100px;
+  }
+
+  #link-homepage{
+    font-size: 20px;
+    width: 100px;
+    margin-left: -35px;
+  }
 
 }
 
