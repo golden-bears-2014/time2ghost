@@ -13,18 +13,17 @@ class RealtimeBartDepartures
     get_upcoming_realtime_departures
   end
 
-  private
 
   def get_route_name
     route_xml = get_route_xml_from_bart_api
-    get_route_name_from_parsed_xml(route_xml)
+    get_route_number_from_parsed_xml(route_xml)
   end
 
   def get_route_xml_from_bart_api
-    open(BartURLBuilder.build_api_call_for_routes(@origin, @destination)) {|xml| xml.read }
+    open(@url_builder.build_routes_api_call) {|xml| xml.read }
   end
 
-  def get_route_number_from_parsed_xml
+  def get_route_number_from_parsed_xml(route_xml)
     @route_number = Nokogiri::XML(route_xml).at_xpath('//leg').attributes["line"].value[-1]
   end
 
@@ -34,7 +33,7 @@ class RealtimeBartDepartures
   end
 
   def get_endpoint_xml_from_bart_api
-    open(@url_builder.build_api_call_for_endpoint) {|xml| xml.read }
+    open(@url_builder.build_endpoint_xml_call) {|xml| xml.read }
   end
 
   def get_name_of_endpoint_station(endpoint_xml)
@@ -47,7 +46,7 @@ class RealtimeBartDepartures
   end
 
   def get_realtime_departure_xml
-    open(@url_builder.build_realtime_departures_api_call) {|xml| xml.read }
+    open(@url_builder.build_realtime_departures_xml_call) {|xml| xml.read }
   end
 
   def filter_realtime_departures_by_correct_route(realtime_xml)

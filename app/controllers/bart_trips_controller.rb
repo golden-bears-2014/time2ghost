@@ -15,7 +15,7 @@ class BartTripsController < ApplicationController
   def create
     @bart_trip = BartTrip.new(params[:bart_trip])
     if @bart_trip.save
-      correct_user.trips << @bart_trip
+      correct_user.bart_trips << @bart_trip
       @bart_trip.update_departure_time
       redirect_to trip_path(@bart_trip)
     else
@@ -31,7 +31,7 @@ class BartTripsController < ApplicationController
   def create_fake
     @bart_trip = BartTrip.new(params[:bart_trip])
     if @bart_trip.save
-      correct_user.trips << @bart_trip
+      correct_user.bart_trips << @bart_trip
       @bart_trip.format_fake_trip(params[:time2go])
       redirect_to trip_path(@bart_trip)
     else

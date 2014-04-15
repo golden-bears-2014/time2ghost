@@ -42,8 +42,6 @@ class BartTrip < ActiveRecord::Base
   def format_fake_trip_minutes(minutes_until_ghosting)
     self.update_attributes(:recommended_leave_time => (Time.now + minutes_until_ghosting.to_i.minutes).change(:sec => 0))
     fake_depart_time = (Time.now + minutes_until_ghosting.to_i.minutes + self.walking_time.to_i.minutes + 5.minutes).change(:sec => 0)
-    puts fake_depart_time
-    puts "holler"
     self.update_attributes(:train_departing_time => fake_depart_time)
   end
 
@@ -71,7 +69,8 @@ class BartTrip < ActiveRecord::Base
   end
 
   def get_depart_times_and_line
-    depart_times = Bart.get_departures(self.departure_station, self.destination_station)
+    bart_departures = RealtimeBartDepartures.new(self.departure_station, self.destination_station)
+    depart_times = bart_departures.get_departures
     self.bart_line = get_station(depart_times.pop).name
     depart_times
   end
