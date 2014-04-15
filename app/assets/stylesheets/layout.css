@@ -61,9 +61,22 @@ button{
   display: block;
   font-size: 2em;
   border-radius: 20px;
-
 }
 
+form input[type=submit]{
+  background-color: #204987;
+  color: white;
+  padding: 20px;
+  margin-top: 10px;
+  width: 20%;
+  margin: 0px auto;
+  margin-bottom: 10px;
+  margin-top: 25px;
+  text-align: center;
+  display: block;
+  font-size: 2em;
+  border-radius: 20px;
+}
 
 .content input {
   padding: 10px;
@@ -73,23 +86,23 @@ button{
   border: 2px solid black;
 }
 
-  .content select {
-    height: 300px;
-    width: 100%; max-height: 50px;
-    border: 0px solid pink;
-    font-size: 1em;
-    margin: 30px 0px;
+.content select {
+  height: 300px;
+  width: 100%; max-height: 50px;
+  border: 0px solid pink;
+  font-size: 1em;
+  margin: 30px 0px;
 
-  }
+}
 
 .content submit {
-  font-size: 3em;
+    font-size: 3em;
     border-radius: 10px;
     border: 1px solid black;
 }
 
 .content button {
-  height: 150px;
+    height: 150px;
     width: 100%; max-height: 50px;
     border: 0px solid pink;
     font-size: 1em;
@@ -98,16 +111,6 @@ button{
     border: 2px solid black;
 
 }
-
-.content input[type=submit] {padding:5px 15px; background:#ccc; border:0 none;
-cursor:pointer;
--webkit-border-radius: 5px;
-border-radius: 10px;
-margin: 0px auto;
-text-align: center
-    border: 2px solid black;
- }
-
 
 
   .tripform {
@@ -116,71 +119,72 @@ text-align: center
     text-align: center;
   }
 
-.signup-button {
-  width: 30%;
-  margin-left: 35%;
-}
+  .signup-button {
+    width: 30%;
+    margin-left: 35%;
+  }
 
-.list-no-decoration{
-  list-style-type: none;
-}
+  .list-no-decoration{
+    list-style-type: none;
+  }
 
-.list-no-decoration li {
-  margin-bottom: 10px;
-}
+  .list-no-decoration li {
+    margin-bottom: 10px;
+  }
 
-#show-trip {
-  width: 60%;
-  margin: 0px auto;
-  font-size: 1.5em;
-}
+  #show-trip {
+    width: 60%;
+    margin: 0px auto;
+    font-size: 1.5em;
+  }
 
-#show-trip span {
-  background-color: #E9F7F7;
-  text-decoration: underline;
-  border-radius: 10px;
-}
-
-
-#profile {
-  text-align: center;
-  width: 80%;
-  margin-left: 10%;
-}
+  #show-trip span {
+    background-color: #E9F7F7;
+    text-decoration: underline;
+    border-radius: 10px;
+  }
 
 
-#profile .userinfo {
-  background-color: #204987;
-  color: white;
-  padding: 20px;
-  margin-top: 10px;
-  width: 75%;
-  margin: 0px auto;
-  margin-bottom: 10px;
-  margin-top: 3px;
-  text-align: center;
-}
+  #profile {
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+  }
 
-#profile hr{
-  width: 50%;
-  margin-left: 25%;
-  margin-top: 20px;
-  margin-bottom: 20px;
 
-}
+  #profile .userinfo {
+    background-color: #204987;
+    color: white;
+    padding: 20px;
+    margin-top: 10px;
+    width: 75%;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    margin-top: 3px;
+    text-align: center;
+  }
 
-#profile a {
-  text-decoration: none;
-  color: white;
-}
+  #profile hr{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
-.logout-form {
-  border: 10px solid pink;
-  float:bottom;
-  margin-top: 100px;
-  color: black;
-}
+  }
 
-#geolocateButton {
+  #profile a {
+    text-decoration: none;
+    color: white;
+  }
 
+  .logout-form {
+    border: 10px solid pink;
+    float:bottom;
+    margin-top: 100px;
+    color: black;
+  }
+
+
+.error {
+  color: red;
 }
