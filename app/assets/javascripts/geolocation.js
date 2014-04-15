@@ -70,11 +70,17 @@ Geolocate.Controller.prototype = {
   }
 };
 
-var BartStations = function() {
-
-};
+var BartStations = function() {};
 
 BartStations.prototype = {
+
+  bind: function() {
+    $("#closestBartButton").on("click", function() {
+      // console.log("wut")
+      var latLongJson = BartStations.prototype.getUserLatLong();
+      console.log(latLongJson)
+    });
+  },
 
   getClosestBart: function(userLatitude, userLongitude){
     $.ajax({
@@ -84,6 +90,20 @@ BartStations.prototype = {
       var closestStationAbbr = this.algorithmFindClosest(response, userLatitude, userLongitude);
       $('#trip_departure_station').val(closestStationAbbr)
     }.bind(this));
+  },
+
+  getUserLatLong: function() {
+    // Ajax to grab value from field
+
+
+    var address = $('#trip_current_location').val()
+    $.ajax({
+      type: 'GET',
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=false&key=AIzaSyBxh8vE1E5HfT5-TYUMWKcuR-ojA77G65U"
+    }).done(function(response){
+      return response.results[0].geometry.location
+    })
+    // https://maps.googleapis.com/maps/api/geocode/json?address=
   },
 
   algorithmFindClosest: function(stations, userLatitude, userLongitude){
@@ -120,7 +140,11 @@ BartStations.prototype = {
   }
 }
 
+
+
 $(document).ready(function(){
   geoloc = new Geolocate();
+  bartloc = new BartStations();
+  bartloc.bind();
 });
 
