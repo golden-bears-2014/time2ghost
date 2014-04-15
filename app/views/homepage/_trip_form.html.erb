@@ -5,10 +5,10 @@
     <%= f.label :current_location %>:
     <%= f.text_field :current_location %><br />
 
-    <%= f.label :departure_station %>
+    <%= f.label :departure_station %>:
     <%= f.collection_select(:user_id, Station.all, :id, :name) %>
 
-    <%= f.label :destination_station %>
+    <%= f.label :destination_station %>:
     <%= f.collection_select(:user_id, Station.all, :id, :name) %>
     <%= f.submit %>
   <% end %>
