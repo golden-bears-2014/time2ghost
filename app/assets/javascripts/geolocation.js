@@ -16,7 +16,7 @@ Geolocate.Binder.prototype = {
 
   bindGeolocate: function(controller) {
     $('#geolocateButton').on('click', function(){
-      $(this).prop("disabled", true);
+      $(this).unbind('click');
       $(this).html("Locating you...");
       controller.getLocation();
     });
