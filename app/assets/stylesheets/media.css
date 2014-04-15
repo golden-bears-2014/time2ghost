@@ -17,14 +17,14 @@
 @media (max-width: 680px){
 
   .content{
-    width: 300px;
+    width: 500px;
     top: 20%;
     right: ;
     left: 2%;
     margin-left: 0em;
 
   }
-  form { width: 60%;
+  form { width: 70%;
       margin: 0 auto; }
   form textarea,
   form input { width: 100%; }
@@ -33,6 +33,10 @@
     font-size: 2em;
     font-family: 'Buda', cursive;
   }
+
+.homepage-button{
+  font-size: 1em;
+}
 
 }
 
@@ -50,16 +54,16 @@
 
 @media (max-width: 450px){
   .content{
-    width: 200px;
+    width: 250px;
     top: 20%;
     right: ;
-    left: 2em;
+    left: 16px;
     margin-left: 0em;
   }
 
   form { width: 100%;
       margin: 0 auto;
-      margin-left: -10px; }
+      margin-left: -17px; }
   form textarea,
   form input { width: 100%; }
 }
