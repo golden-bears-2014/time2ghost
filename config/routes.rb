@@ -1,4 +1,6 @@
 Time2ghost::Application.routes.draw do
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+
   root :to => 'homepage#index'
   resources :bart_trips
   resources :users
