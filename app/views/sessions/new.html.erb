@@ -1,0 +1,10 @@
+<div class="content">
+  <div class="login_form">
+  <%= form_for(:session, url: sessions_path) do |f| %>
+    Username: <%= f.text_field :username, autofocus: true, placeholder: "username", autofocus: true %><br />
+    Password : <%= f.password_field :password, placeholder: "password" %><br />
+
+    <%= f.submit "Log In", :class => "homepage-button" %>
+  <% end %>
+  </div>
+</div>
