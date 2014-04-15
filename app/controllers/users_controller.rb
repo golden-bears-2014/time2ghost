@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    redirect_to '/profile'
+    redirect_to root_path
   end
 
   def profile
