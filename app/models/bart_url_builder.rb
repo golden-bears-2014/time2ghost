@@ -1,6 +1,6 @@
 class BartURLBuilder
   def initialize(origin, destination)
-    @api_key = ENV['BART_KEY']
+    @api_key = "MW9S-E7SL-26DU-VV8V" # REPLACE WITH OUR OWN KEY
     @origin = origin
     @destination = destination
   end
