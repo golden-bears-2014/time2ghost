@@ -44,7 +44,7 @@ Geolocate.Controller.prototype = {
     }).done(function(response){
       var address = response.results[0].formatted_address
       $("#geolocateButton").html("Found you and closest departure station :)");
-      $("#trip_current_location").val(address);
+      $("#bart_trip_current_location").val(address);
       var bStations = new BartStations();
       bStations.getClosestBart(position.coords.latitude, position.coords.longitude);
     }).fail(function(response, error) {
@@ -88,7 +88,7 @@ BartStations.prototype = {
       url: "/stations"
     }).done(function(response){
       var closestStationAbbr = this.algorithmFindClosest(response, userLatitude, userLongitude);
-      $('#trip_departure_station').val(closestStationAbbr)
+      $('#bart_trip_departure_station').val(closestStationAbbr)
     }.bind(this));
   },
 
