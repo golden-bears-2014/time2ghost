@@ -3,28 +3,19 @@ class BartTrip < ActiveRecord::Base
   :train_departing_time, :bart_line, :recommended_leave_time, :current_location
   belongs_to :user
 
-
-
   def update_departure_time
-    depart_station_obj = get_station(self.departure_station)
-
-    self.walking_time = get_walking_time_to_station(current_location, depart_station_obj.gmap_destination_string)
-
-    potential_depart_times = get_depart_times_and_line
-
-    minutes_until_departure = get_minutes_until_train_departs(potential_depart_times)
-
-    set_train_departing_time(minutes_until_departure)
-
+    set_walking_time
+    get_depart_times_and_line
+    get_minutes_until_train_departs
+    set_train_departing_time
     suggested_leave_time_in_minutes_from_now = minutes_until_departure - walking_time - 5
-
     set_recommended_leave_time(suggested_leave_time_in_minutes_from_now)
-
     self.save!
   end
 
   def format_trip_message
-    "test formatting for trip message. leave in #{self.recommended_leave_time}"
+    "Leave now to catch the #{format_time(self.train_departing_time)} #{self.bart_line} train " +
+    "from #{self.departure_station} to #{self.destination_station}. It's a #{self.walking_time} minute walk. <3, time2ghost"
   end
 
   def get_trips_for_current_minute
@@ -54,26 +45,26 @@ class BartTrip < ActiveRecord::Base
   end
 
   def get_depart_times_and_line
-    bart_departures = RealtimeBartDepartures.new(self.departure_station, self.destination_station)
-    depart_times = bart_departures.get_departures
-    self.bart_line = get_station(depart_times.pop).name
-    depart_times
+    realtime_departures = RealtimeBartDepartures.new(self.departure_station, self.destination_station).get_departures
+    self.bart_line = realtime_departures[:endpoint]
+    @departures = realtime_departures[:departure_times]
   end
 
-  def set_train_departing_time(minutes_until_departure)
-    self.train_departing_time = remove_seconds_from_time(Time.now + minutes_until_departure.to_i.minutes)
+  def set_train_departing_time
+    self.train_departing_time = remove_seconds_from_time(Time.now + number_to_minutes(@minutes_until_next_possible_train))
   end
 
-  def get_minutes_until_train_departs(potential_depart_times)
-    potential_depart_times.find { |depart_time| depart_time.to_i - self.walking_time - 5 > 0 }.to_i
-  end
-
-  def remove_seconds_from_time(time)
-    time.change(:sec => 0)
+  def get_minutes_until_train_departs # magic number 5 = get to the station 5 minutes early!
+    @minutes_until_next_possible_train = @departures.find { |depart_time| depart_time.to_i - self.walking_time - 5 > 0 }.to_i
   end
 
   def get_station(abbr)
     Station.find_by_abbr(abbr.upcase)
+  end
+
+  def set_walking_time
+    station_coordinates = Station.find_by_abbr(self.departure_station).gmap_destination_string
+    self.walking_time = get_walking_time_to_station(current_location, station_coordinates)
   end
 
   def get_walking_time_to_station(origin, destination)
