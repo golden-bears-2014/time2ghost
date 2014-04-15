@@ -2,10 +2,6 @@ class GoogleMaps
   require 'uri'
   attr_accessor :parsed_response
 
-  def initialize
-    @parsed_response
-  end
-
   def http_get_directions(origin, destination)
     url = assemble_directions_request(origin, destination)
     @parsed_response = HTTParty.get(url).parsed_response
