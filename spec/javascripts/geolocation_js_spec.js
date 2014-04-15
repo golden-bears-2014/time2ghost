@@ -24,7 +24,8 @@ describe ("Geolocate", function() {
 //     }, 1);
 //   });
 describe ("Geolocate.Controller", function() {
-  it("is defined", function(done) {
+  // it("is defined", function(done) {
+  it("is defined", function() {
     expect(Geolocate.Controller).toBeDefined();
     // var position = {
     //   coords: {
