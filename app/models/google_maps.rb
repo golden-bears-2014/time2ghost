@@ -1,14 +1,31 @@
 class GoogleMaps
   require 'uri'
+  attr_accessor :parsed_response
 
-  def self.http_get_directions(origin, destination)
+  def initialize
+    @parsed_response
+  end
+
+  def http_get_directions(origin, destination)
     url = self.assemble_directions_request(origin, destination)
+    @parsed_response = HTTParty.get(url).parsed_response
+  end
 
-    HTTParty.get(url).parsed_response
+  def get_total_walking_time
+    @parsed_response["routes"][0]["legs"][0]["duration"]["value"] / 60
   end
 
   def self.get_total_walking_time(gmaps_returned_json)
     gmaps_returned_json["routes"][0]["legs"][0]["duration"]["value"] / 60
+  end
+
+  def parse_directions
+    directions = []
+    @parsed_response["routes"][0]["legs"][0]["steps"].each do |step|
+      directions << step["html_instructions"]
+    end
+
+    directions
   end
 
   def self.parse_directions(gmaps_returned_json)
