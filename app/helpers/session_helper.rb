@@ -3,7 +3,7 @@ module SessionHelper
     !!session[:user_id]
   end
 
-  def correct_user
+  def current_user
     User.find(session[:user_id]) if logged_in?
   end
 end

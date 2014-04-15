@@ -2,12 +2,12 @@ class UsersController < ApplicationController
   include SessionHelper
 
   def show
-    @user = correct_user
+    @user = current_user
     redirect_to '/profile'
   end
 
   def profile
-    @user = correct_user
+    @user = current_user
     render :show
   end
 
