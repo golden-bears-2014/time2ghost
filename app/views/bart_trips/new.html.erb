@@ -1,18 +1,19 @@
 <div class="content">
 <div class="tripform">
-  <%= button_tag "Find Me", id: "geolocateButton", remote: true%>
+  <%= link_to "Find Me", "#", remote: true, id: 'geolocateButton', :class => "homepage-button" %><br>
+
   <%= form_for BartTrip.new do |f| %>
     <%= f.label :current_location %>:
     <br>
-    <%= f.text_field :current_location %>
+    <%= f.text_field :current_location, autofocus: true, placeholder: "Find Me!"%>
     <br>
 
-    <%= f.label :departure_station %>
-    <%= f.collection_select(:departure_station, Station.all, :abbr, :name) %>
+    <%= f.label :departure_station %>:
+    <%= f.collection_select(:departure_station, Station.all, :abbr, :name, :include_blank => true) %>
 <br>
-    <%= f.label :destination_station %>
-    <%= f.collection_select(:destination_station, Station.all, :abbr, :name) %>
-    <%= f.submit %>
+    <%= f.label :destination_station %>:
+    <%= f.collection_select(:destination_station, Station.all, :abbr, :name, :include_blank => true) %>
+    <%= f.submit "Create" %>
   <% end %>
 
 </div>
