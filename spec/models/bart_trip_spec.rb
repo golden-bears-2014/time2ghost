@@ -5,19 +5,6 @@ describe BartTrip do
     @trip = BartTrip.new()
   end
 
-  context "#find_closest_station" do
-
-  it "finds the Powell station as closest to specified coords" do
-    station = @trip.find_closest_station(37.779178, -122.406220)
-    expect(station.abbr).to eq("POWL")
-  end
-
-  it "find the Montgomery station as closest to specified coords" do
-    station = @trip.find_closest_station(37.792237, -122.406163)
-    expect(station.abbr).to eq("MONT")
-  end
-end
-
   context "#set_recommended_leave_time" do
     it "sets recommended leave time correctly" do
       rand_minutes = rand(11)
