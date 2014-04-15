@@ -71,9 +71,8 @@ class BartTrip < ActiveRecord::Base
 
 
   def get_walking_time_to_station(origin, destination)
-    GoogleMaps.new.http_get_directions(origin, destination).get_total_walking_time
-
-    # gmaps_json = GoogleMaps.http_get_directions(origin, destination)
-    # GoogleMaps.get_total_walking_time(gmaps_json)
+    gmaps = GoogleMaps.new
+    gmaps.http_get_directions(origin, destination)
+    gmaps.get_total_walking_time
   end
 end
