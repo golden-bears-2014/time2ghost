@@ -20,23 +20,21 @@ class BartTrip < ActiveRecord::Base
 
   def get_depart_times_and_line
     @realtime_departures = RealtimeBartDepartures.new(self.departure_station, self.destination_station).get_departures
-    p @realtime_departures
-    puts "above here prank"
-    # self.bart_line = @realtime_departures[:endpoint]
-    # @departures = @realtime_departures[:departure_times]
-  end
-
-  # checks through the realtime departure hash
-  # to find the earliest possible trip that the user can make
-  def find_earliest_possible_departure_time
-    @realtime_departure
-
+    @realtime_departures
   end
 
   def get_minutes_until_train_departs # magic number 5 = get to the station 5 minutes early!
-    number_of_minutes_till_next_train = @departures.find { |depart_time| (depart_time.to_i - self.walking_time) >= 0 }
-    puts number_of_minutes_till_next_train
-    @minutes_until_next_possible_train = number_of_minutes_till_next_train.to_i
+    @first_possible_departure = @realtime_departures.find { |depart_time| (depart_time.first.to_i - self.walking_time - 5) > 0 }
+    set_bart_line
+    set_minutes_until_next_train
+  end
+
+  def set_minutes_until_next_train
+    @minutes_until_next_possible_train = first_possible_departure.first
+  end
+
+  def set_bart_line
+    self.bart_line = Station.find_by_abbr(first_possible_departure.pop).name
   end
 
   def set_train_departing_time
@@ -48,8 +46,6 @@ class BartTrip < ActiveRecord::Base
 
   end
 
-
-
   def format_trip_message
     "Leave now to catch the #{format_time(self.train_departing_time)} #{self.bart_line} train " +
     "from #{self.departure_station} to #{self.destination_station}. It's a #{self.walking_time} minute walk. <3, time2ghost"
@@ -59,6 +55,11 @@ class BartTrip < ActiveRecord::Base
     BartTrip.where("recommended_leave_time = ?", Time.now.change(:sec => 0))
   end
 
+  def format_fake_trip(minutes_until_ghosting)
+    @minutes_until_ghosting = minutes_until_ghosting.to_i.minutes
+    set_walking_time
+    format_fake_trip_minutes
+  end
 
 
   # def format_fake_trip(minutes_until_ghosting)
