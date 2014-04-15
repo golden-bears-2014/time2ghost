@@ -76,7 +76,6 @@ BartStations.prototype = {
 
   bind: function() {
     $("#closestBartButton").on("click", function() {
-      // console.log("wut")
       var latLongJson = BartStations.prototype.getUserLatLong();
       console.log(latLongJson)
     });
@@ -93,9 +92,6 @@ BartStations.prototype = {
   },
 
   getUserLatLong: function() {
-    // Ajax to grab value from field
-
-
     var address = $('#trip_current_location').val()
     $.ajax({
       type: 'GET',
@@ -103,8 +99,7 @@ BartStations.prototype = {
     }).done(function(response){
       return response.results[0].geometry.location
     })
-    // https://maps.googleapis.com/maps/api/geocode/json?address=
-  },
+  },;
 
   algorithmFindClosest: function(stations, userLatitude, userLongitude){
     var differencesArray = this.getArrayOfDifferences(stations, userLatitude, userLongitude);
