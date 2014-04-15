@@ -22,8 +22,8 @@ class BartTrip < ActiveRecord::Base
     self.save!
   end
 
-  def self.get_trips_for_current_minute
-    @trips = Trip.where("recommended_leave_time = ?", Time.now.change(:sec => 0))
+  def get_trips_for_current_minute
+    BartTrip.where("recommended_leave_time = ?", Time.now.change(:sec => 0))
   end
 
   def format_fake_trip(minutes_until_ghosting)
@@ -61,7 +61,7 @@ class BartTrip < ActiveRecord::Base
     closest_station
   end
 
-  private
+  # private
 
 
   def set_recommended_leave_time(suggested_leave_time_in_minutes_from_now)
