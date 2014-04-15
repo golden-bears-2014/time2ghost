@@ -1,5 +1,5 @@
   <%= form_for @user do |f| %>
-    <%= f.label :username %>:<br>
+    <%= f.label :username %><br>
     <%= f.text_field :username, autofocus: true, placeholder: "username" %><br />
 
     <%= f.label :password %>:<br>
@@ -12,5 +12,5 @@
     <%= f.label :email %>:<br>
     <%= f.text_field :email, placeholder: "user@email.com"%><br />
 
-    <%= f.submit %>
+    <%= f.submit "Submit" %>
   <% end %>
