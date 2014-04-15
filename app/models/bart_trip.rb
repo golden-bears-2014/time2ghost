@@ -4,6 +4,7 @@ class BartTrip < ActiveRecord::Base
   belongs_to :user
 
 
+
   def update_departure_time
     depart_station_obj = get_station(self.departure_station)
 

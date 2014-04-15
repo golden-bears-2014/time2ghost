@@ -1,5 +1,6 @@
 class RealtimeBartDepartures
   require 'open-uri'
+  attr_accessor :endpoint_and_departure_times
 
   def initialize(origin, destination)
     @origin = origin
@@ -10,8 +11,10 @@ class RealtimeBartDepartures
   def get_departures
     get_route_name
     get_name_of_endpoint_station_on_route
-    get_upcoming_realtime_departures
+    @endpoint_and_departure_times = get_upcoming_realtime_departures
   end
+
+
 
   def get_route_name
     route_xml = get_route_xml_from_bart_api
@@ -33,8 +36,9 @@ class RealtimeBartDepartures
 
   def get_upcoming_realtime_departures
     realtime_departure_xml = get_realtime_departure_xml
-    departure_times = BartXMLParser.filter_realtime_departures_by_correct_route(realtime_departure_xml, @endpoint)
-    departure_times << @endpoint
+    departure_times_array = BartXMLParser.filter_realtime_departures_by_correct_route(realtime_departure_xml, @endpoint)
+    departure_times_hash = {}
+    departure_times_hash[@endpoint] = departure_times_array
   end
 
   def get_realtime_departure_xml
