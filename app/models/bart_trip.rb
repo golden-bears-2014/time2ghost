@@ -1,7 +1,8 @@
-class Trip < ActiveRecord::Base
+class BartTrip < ActiveRecord::Base
   attr_accessible :user_id, :departure_station, :destination_station, :walking_time, :directions,
   :train_departing_time, :bart_line, :recommended_leave_time, :current_location
   belongs_to :user
+
 
   def update_departure_time
     depart_station_obj = get_station(self.departure_station)
