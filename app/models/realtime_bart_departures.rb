@@ -9,35 +9,41 @@ class RealtimeBartDepartures
   end
 
   def get_departures
-    get_route_name
-    get_name_of_endpoint_station_on_route
+    get_route_names
+    get_name_of_endpoint_stations_on_routes
     @endpoint_and_departure_times = get_upcoming_realtime_departures
   end
 
-  def get_route_name
+  def get_route_names
     route_xml = get_route_xml_from_bart_api
-    @route_number = BartXMLParser.get_route_number_from_xml(route_xml)
+    @route_numbers = BartXMLParser.get_route_numbers_from_xml(route_xml)
   end
 
   def get_route_xml_from_bart_api
     open(@url_builder.build_routes_api_call) {|xml| xml.read }
   end
 
-  def get_name_of_endpoint_station_on_route
-    endpoint_xml = get_endpoint_xml_from_bart_api
-    @endpoint = BartXMLParser.get_name_of_endpoint_station(endpoint_xml)
+  # get endpoint for each possible line
+  def get_name_of_endpoint_stations_on_routes
+    endpoint_xml_array = get_endpoint_xml_array_from_bart_api
+    @endpoints = []
+    endpoint_xml_array.each do |current_endpoint_xml|
+     @endpoints <<  BartXMLParser.get_name_of_endpoint_station(current_endpoint_xml)
+   end
+   @endpoints
   end
 
-  def get_endpoint_xml_from_bart_api
-    open(@url_builder.build_endpoint_api_call(@route_number)) {|xml| xml.read }
+  def get_endpoint_xml_array_from_bart_api
+    endpoint_xml_array = []
+    @route_numbers.each do |route_number|
+      endpoint_xml_array << open(@url_builder.build_endpoint_api_call(route_number)) {|xml| xml.read }
+    end
+    endpoint_xml_array
   end
 
   def get_upcoming_realtime_departures
     realtime_departure_xml = get_realtime_departure_xml
-    departure_times_array = BartXMLParser.filter_realtime_departures_by_correct_route(realtime_departure_xml, @endpoint)
-    departure_times_hash = {}
-    departure_times_hash[:endpoint] = @endpoint
-    departure_times_hash[:departure_times] = departure_times_array
+    departure_times_hash = BartXMLParser.filter_realtime_departures_by_correct_route(realtime_departure_xml, @endpoints)
     departure_times_hash
   end
 

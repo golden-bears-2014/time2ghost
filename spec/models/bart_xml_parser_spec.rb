@@ -16,7 +16,7 @@ describe BartXMLParser do
 
   context "#filter_realtime_departures_by_correct_route" do
     it "returns realtime departure data" do
-      expect(BartXMLParser.filter_realtime_departures_by_correct_route(REALTIME_XML, "DALY")).to eq(["11", "14", "25", "DALY"])
+      expect(BartXMLParser.filter_realtime_departures_by_correct_route(REALTIME_XML, "DALY")).to eq(["11", "14", "25"])
     end
   end
 end
