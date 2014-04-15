@@ -1,5 +1,5 @@
 
-<%= link_to "new real trip", new_bart_trip_path, :method => "get", :class => "homepage-button" %>
-<%= link_to "new fake trip", new_fake_trip_path, :method => "get", :class => "homepage-button" %>
-<%= link_to "my profile and trips", '/profile', :method => "get", :class => "homepage-button" %>
-<%= link_to "log out", session_path(session[:user_id]), :method => "delete", :class => "homepage-button" %>
+<%= link_to "new real trip", new_bart_trip_path, :method => "get", :class => "homepage-button", :id => "link" %>
+<%= link_to "new fake trip", new_fake_trip_path, :method => "get", :class => "homepage-button", :id => "link" %>
+<%= link_to "my profile and trips", '/profile', :method => "get", :class => "homepage-button", :id => "link" %>
+<%= link_to "log out", session_path(session[:user_id]), :method => "delete", :class => "homepage-button" , :id => "link" %>
