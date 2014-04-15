@@ -8,23 +8,60 @@ html{
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-color: #E9F7F7;
+  background-color: #D9E7F7;
 }
 
 .content{
-  background: url('redox.png');
+  background: url('binding_light_@2X.png');
   background-size: 100px 100px;
   position: absolute;
   display: inline-block;
   width:50%;
   padding:20px;
-  background-color: #ACE1C7;
+  background-color: #CCCCCC;
   top: 22%;
   margin-left: 10%;
   width: 75%;
   color: black;
   font-size: 1.4em;
   text-align: center;
+  border-radius: 20px;
+}
+
+button{
+  padding: 30px;
+}
+
+.homepage-button{
+  background-color: #204987;
+  color: white;
+  padding: 20px;
+  margin-top: 10px;
+  width: 75%;
+  margin: 0px auto;
+  margin-bottom: 10px;
+  margin-top: 25px;
+  text-align: center;
+  display: block;
+  font-size: 2em;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.tripform form input[type=submit]{
+  background-color: #204987;
+  color: white;
+  padding: 20px;
+  margin-top: 10px;
+  width: 75%;
+  margin: 0px auto;
+  margin-bottom: 10px;
+  margin-top: 25px;
+  text-align: center;
+  display: block;
+  font-size: 2em;
+  border-radius: 20px;
+
 }
 
 
@@ -135,4 +172,15 @@ text-align: center
 #profile a {
   text-decoration: none;
   color: white;
+}
+
+.logout-form {
+  border: 10px solid pink;
+  float:bottom;
+  margin-top: 100px;
+  color: black;
+}
+
+#geolocateButton {
+
 }
