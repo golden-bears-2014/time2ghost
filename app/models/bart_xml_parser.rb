@@ -14,5 +14,9 @@ class BartXMLParser
     departure_times << endpoint
   end
 
+  def self.parse_bart_stations_list(stations_xml)
+    Nokogiri::XML(stations_xml).xpath('//station')
+  end
+
 end
 

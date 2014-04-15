@@ -82,7 +82,7 @@ BartStations.prototype = {
             url: "/stations"
         }).done(function(response) {
             var closestStationAbbr = this.algorithmFindClosest(response, userLatitude, userLongitude);
-            $('#trip_departure_station').val(closestStationAbbr)
+            $('#bart_trip_departure_station').val(closestStationAbbr)
         }.bind(this));
     },
 
