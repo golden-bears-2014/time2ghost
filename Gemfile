@@ -8,6 +8,7 @@ gem 'httparty'
 gem 'nokogiri'
 gem 'sidekiq'
 gem 'clockwork'
+gem 'jasmine-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
