@@ -70,6 +70,44 @@ Geolocate.Controller.prototype = {
                 break;
         }
     }
+  },
+
+  onSuccess: function(position){
+    Geolocate.Controller.prototype.reverseGeolocation(position)
+  },
+
+  reverseGeolocation: function(position){
+    var coords = position.coords.latitude + "," + position.coords.longitude;
+    $.ajax({
+      type: 'GET',
+      url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords + "&sensor=false&key=AIzaSyBxh8vE1E5HfT5-TYUMWKcuR-ojA77G65U"
+    }).done(function(response){
+      var address = response.results[0].formatted_address
+      $("#geolocateButton").html("Found you and the closest departure station.");
+      $("#bart_trip_current_location").val(address);
+      var bStations = new BartStations();
+      bStations.getClosestBart(position.coords.latitude, position.coords.longitude);
+    }).fail(function(response, error) {
+      console.log(error);
+    });
+  },
+
+  showError: function(error) {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        alert("User denied the request for Geolocation.");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert("Location information is unavailable.");
+        break;
+      case error.TIMEOUT:
+        alert("The request to get user location timed out.");
+        break;
+      case error.UNKNOWN_ERROR:
+        alert("An unknown error occurred.");
+        break;
+    }
+  }
 };
 
 var BartStations = function() {};
@@ -139,7 +177,6 @@ BartStations.prototype = {
 
     euclideanDistance: function(x1, y1, x2, y2) {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
->>>>>>> more refactoring on bart trip model
     }
 }
 

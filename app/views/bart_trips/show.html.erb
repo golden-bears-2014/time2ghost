@@ -1,7 +1,7 @@
 <div class="content">
   <div id="show-trip">
-Hi there. Your train from <span> <%= Station.find_by_abbr(@bart_trip.departure_station).name %></span> to <span> <%= Station.find_by_abbr(@bart_trip.destination_station).name %></span>
-leaves at <span> <%= @bart_trip.train_departing_time.strftime("%l:%M %P on %B %d,") %> </span>. It's a <span><%= @bart_trip.walking_time %> minute walk</span> from <span> <%= @bart_trip.current_location %></span> so you should leave at
+Hi there.<br><br> Your train from <span> <%= Station.find_by_abbr(@bart_trip.departure_station).name %></span> to <span> <%= Station.find_by_abbr(@bart_trip.destination_station).name %></span>
+leaves at <span> <%= @bart_trip.train_departing_time.strftime("%l:%M %P on %B %d,") %> </span>.<br><br> It's a <span><%= @bart_trip.walking_time %> minute walk</span> from <span> <%= @bart_trip.current_location %></span>.<br><br> You should leave at
 <span> <%= @bart_trip.recommended_leave_time.strftime("%l:%M %P") %>.</span> <br><br>We'll text you then.
 <br><br><br>
 <3, time2ghost
