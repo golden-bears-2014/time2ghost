@@ -11,10 +11,13 @@ Geolocate.Binder.prototype = {
 
   bind: function() {
     this.bindGeolocate(this.controller);
+
   },
 
   bindGeolocate: function(controller) {
     $('#geolocateButton').on('click', function(){
+      $(this).prop("disabled", true);
+      $(this).html("Locating you...");
       controller.getLocation();
     });
   }
