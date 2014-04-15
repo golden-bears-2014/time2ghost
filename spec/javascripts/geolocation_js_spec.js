@@ -16,17 +16,31 @@ describe ("Geolocate", function() {
   })
 });
 
+// This is working. Waits for the call in the code to
+// beforeEach(function(done) {
+//     setTimeout(function() {
+//       value = 0;
+//       done();
+//     }, 1);
+//   });
 describe ("Geolocate.Controller", function() {
-  it("gets address from reverseGeolocation", function() {
-    var position = {
-      coords: {
-        latitude: 37.784598,
-        longitude: -122.397218
-      }
-    }
-    expect(reverseGeolocation(position)).toBeUndefined
+  it("is defined", function(done) {
+    expect(Geolocate.Controller).toBeDefined();
+    // var position = {
+    //   coords: {
+    //     latitude: 37.784598,
+    //     longitude: -122.397218
+    //   }
+    // }
+    // var a = Geolocate.Controller.prototype.reverseGeolocation(position);
+    // console.log(a + "hi");
+    // done();
+    // // waitsFor(reverseGeolocation(position), 2000);
+
+    // // console.log(response)
   })
 });
+
 
 describe ("BartStations", function() {
   it("is defined", function() {
