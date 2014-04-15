@@ -29,9 +29,7 @@ class GoogleMaps
 
     "https://maps.googleapis.com/maps/api/directions/json?" + URI.encode_www_form(params)
   end
-
 end
-
 
 # Demo link
 # https://maps.googleapis.com/maps/api/directions/json?origin=717+california+street&destination=montgomery+st+station&sensor=false&mode=walking
