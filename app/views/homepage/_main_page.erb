@@ -1,4 +1,4 @@
 
-<%= link_to raw("<button>new real trip</button>"), new_bart_trip_path %>
-<%= link_to raw("<button>new fake trip</button>"), new_fake_trip_path %>
-<%= link_to raw("<button>my profile</button>"), '/profile' %>
+<%= button_to "new real trip", new_bart_trip_path, :method => "get" %>
+<%= button_to "new fake trip", new_fake_trip_path, :method => "get" %>
+<%= button_to "my profile", '/profile', :method => "get" %>
