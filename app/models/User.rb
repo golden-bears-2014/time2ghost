@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :phone_number, presence: true
   validates :email, presence: true
   validates :password, length: { in: 6..50 }
-  has_many :trips
+  has_many :bart_trips
 
   def format_phone_number
     phone = self.phone_number

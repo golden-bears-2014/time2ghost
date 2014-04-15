@@ -9,7 +9,6 @@ class Station < ActiveRecord::Base
   def distance_to(user_lat, user_long)
     lat_difference = (user_lat - self.latitude.to_f).abs
     long_difference = (user_long - self.longitude.to_f).abs
-
     lat_difference + long_difference
   end
 

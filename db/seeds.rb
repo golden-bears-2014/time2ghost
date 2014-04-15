@@ -20,6 +20,6 @@ parsed_stations.each do |station|
 end
 
 u = User.create(username: "Lucas", password: "testtest", phone_number: "8184212905", email: "lucas@lucas.com")
-Trip.create(user_id: u.id, departure_station: "24TH", destination_station: "PITT", current_location: "3159 23rd st, 94110")
-Trip.create(user_id: u.id, departure_station: "24TH", destination_station: "PITT", current_location: "3159 23rd st, 94110")
+BartTrip.create(user_id: u.id, departure_station: "24TH", destination_station: "PITT", current_location: "3159 23rd st, 94110")
+BartTrip.create(user_id: u.id, departure_station: "24TH", destination_station: "PITT", current_location: "3159 23rd st, 94110")
 

@@ -1,10 +1,15 @@
 <div class="content">
 <div class="tripform">
   <%= button_tag "Find Me", id: "geolocateButton", remote: true%>
-  <%= form_for Trip.new do |f| %>
+  <%= form_for @bart_trip, :url => url_for(:controller => 'bart_trips', :action => 'create_fake') do |f| %>
     <%= f.label :current_location %>:
     <br>
     <%= f.text_field :current_location %>
+    <br>
+
+    <%= label_tag(:time2go, "Get me outta here in") %>:
+    <br>
+    <%= text_field_tag(:time2go) %>minutes
     <br>
 
     <%= f.label :departure_station %>
@@ -14,6 +19,7 @@
     <%= f.collection_select(:destination_station, Station.all, :abbr, :name) %>
     <%= f.submit %>
   <% end %>
+
 
 </div>
 </div>

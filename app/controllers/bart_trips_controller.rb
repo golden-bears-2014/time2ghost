@@ -1,23 +1,23 @@
-class TripsController < ApplicationController
+class BartTripsController < ApplicationController
   include SessionHelper
   before_filter :require_login, [:show, :new, :create]
 
 
   def show
-    @trip = Trip.find(params[:id])
+    @bart_trip = BartTrip.find(params[:id])
     render :show
   end
 
   def new
-    @trip = Trip.new
+    @bart_trip = BartTrip.new
   end
 
   def create
-    @trip = Trip.new(params[:trip])
-    if @trip.save
-      correct_user.trips << @trip
-      @trip.update_departure_time
-      redirect_to trip_path(@trip)
+    @bart_trip = BartTrip.new(params[:bart_trip])
+    if @bart_trip.save
+      correct_user.trips << @bart_trip
+      @bart_trip.update_departure_time
+      redirect_to trip_path(@bart_trip)
     else
       flash[:error] = "Trip creation error"
       render :new
@@ -25,15 +25,15 @@ class TripsController < ApplicationController
   end
 
   def new_fake
-    @trip = Trip.new
+    @bart_trip = Trip.new
   end
 
   def create_fake
-    @trip = Trip.new(params[:trip])
-    if @trip.save
-      correct_user.trips << @trip
-      @trip.format_fake_trip(params[:time2go])
-      redirect_to trip_path(@trip)
+    @bart_trip = BartTrip.new(params[:bart_trip])
+    if @bart_trip.save
+      correct_user.trips << @bart_trip
+      @bart_trip.format_fake_trip(params[:time2go])
+      redirect_to trip_path(@bart_trip)
     else
       flash[:error] = "Trip creation error"
       render :new

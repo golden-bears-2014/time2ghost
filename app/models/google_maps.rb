@@ -16,7 +16,6 @@ class GoogleMaps
     gmaps_returned_json["routes"][0]["legs"][0]["steps"].each do |step|
       directions << step["html_instructions"]
     end
-
     directions
   end
 

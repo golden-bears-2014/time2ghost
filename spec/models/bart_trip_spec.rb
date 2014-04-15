@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Trip do
+describe BartTrip do
   before(:each) do
-    @trip = Trip.new
+    @trip = BartTrip.new
   end
 
   context "#find_closest_station" do
@@ -58,8 +58,8 @@ end
 
   context "#get_trips_for_current_minute" do
     it "finds accurate trips for current minute" do
-    5.times{ Trip.create(:recommended_leave_time => Time.now.change(:sec => 0))}
-    expect(Trip.get_trips_for_current_minute.length).to eq(5)
+    BartTrip.create(:recommended_leave_time => Time.now.change(:sec => 0))
+    expect(BartTrip.get_trips_for_current_minute.length).to eq(1)
     end
   end
 end

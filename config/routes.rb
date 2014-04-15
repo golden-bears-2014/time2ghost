@@ -1,6 +1,6 @@
 Time2ghost::Application.routes.draw do
   root :to => 'homepage#index'
-  resources :trips
+  resources :barttrips
   resources :users
   resources :stations, :only => [:index]
   resources :sessions, :only => [:create, :destroy]

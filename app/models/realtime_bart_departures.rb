@@ -4,6 +4,7 @@ class RealtimeBartDepartures
   def initialize(origin, destination)
     @origin = origin
     @destination = destination
+    @url_builder = BartURLBuilder.new(origin, destination)
   end
 
   def get_departures
@@ -20,7 +21,7 @@ class RealtimeBartDepartures
   end
 
   def get_route_xml_from_bart_api
-    open("http://api.bart.gov/api/sched.aspx?cmd=depart&orig=#{@origin}&dest=#{@destination}&key=MW9S-E7SL-26DU-VV8V") {|xml| xml.read }
+    open(BartURLBuilder.build_api_call_for_routes(@origin, @destination)) {|xml| xml.read }
   end
 
   def get_route_number_from_parsed_xml
@@ -33,7 +34,7 @@ class RealtimeBartDepartures
   end
 
   def get_endpoint_xml_from_bart_api
-    open("http://api.bart.gov/api/route.aspx?cmd=routeinfo&route=#{@route}&key=MW9S-E7SL-26DU-VV8V") {|xml| xml.read }
+    open(@url_builder.build_api_call_for_endpoint) {|xml| xml.read }
   end
 
   def get_name_of_endpoint_station(endpoint_xml)
@@ -46,14 +47,13 @@ class RealtimeBartDepartures
   end
 
   def get_realtime_departure_xml
-    open("http://api.bart.gov/api/etd.aspx?cmd=etd&orig=#{@origin}&key=MW9S-E7SL-26DU-VV8V") {|xml| xml.read }
+    open(@url_builder.build_realtime_departures_api_call) {|xml| xml.read }
   end
 
   def filter_realtime_departures_by_correct_route(realtime_xml)
     path = Nokogiri::XML(realtime_xml).xpath('//etd')
     correct_destination = path.xpath("//abbreviation[contains(text(), '#{@endpoint}')]").first.parent()
-    arrival_times = []
-    correct_destination.search('minutes').each {|x| arrival_times << x.text}
-    arrival_times << endpoint
+    departure_times = correct_destination.search('minutes').inject([]){ |all_times, departure_time| all_times << departure_time.text}
+    departure_times << endpoint
   end
 end

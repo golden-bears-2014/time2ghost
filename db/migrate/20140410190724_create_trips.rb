@@ -1,6 +1,6 @@
 class CreateTrips < ActiveRecord::Migration
   def change
-    create_table :trips do |t|
+    create_table :bart_trips do |t|
       t.belongs_to :user
       t.string :departure_station
       t.string :destination_station

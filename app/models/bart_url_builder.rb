@@ -5,15 +5,15 @@ class BartURLBuilder
     @destination = destination
   end
 
-  def build_api_call_for_routes
+  def build_routes_api_call
     "http://api.bart.gov/api/sched.aspx?cmd=depart&orig=#{@origin}&dest=#{@destination}&key=#{@api_key}"
   end
 
-  def build_api_call_for_endpoint(route_number)
+  def build_endpoint_api_call(route_number)
   "http://api.bart.gov/api/route.aspx?cmd=routeinfo&route=#{route_number}&key=#{@api_key}"
   end
 
-  def get_realtime_departure_xml
+  def build_realtime_departures_api_call
     "http://api.bart.gov/api/etd.aspx?cmd=etd&orig=#{@origin}&key=#{@api_key}"
   end
 
