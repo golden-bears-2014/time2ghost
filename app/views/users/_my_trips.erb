@@ -1,7 +1,7 @@
 <% if user.trips_in_the_future.count > 0 %>
 your upcoming trips:
 <% user.trips_in_the_future.each do |trip| %>
-<div class="userinfo"%> <%= link_to trip_path(trip) do %>  from <%= display_station_name(trip.departure_station) %> to <%= display_station_name(trip.destination_station) %>
+<div class="userinfo"%> <%= link_to bart_trip_path(trip) do %>  from <%= display_station_name(trip.departure_station) %> to <%= display_station_name(trip.destination_station) %>
   <br> train leaves at <%= format_time(trip.train_departing_time) %>, you leave at <%= format_time(trip.recommended_leave_time) %></div>
 <% end %>
 <% end %>

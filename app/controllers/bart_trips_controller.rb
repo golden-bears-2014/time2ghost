@@ -33,7 +33,7 @@ class BartTripsController < ApplicationController
     if @bart_trip.save
       correct_user.bart_trips << @bart_trip
       @bart_trip.format_fake_trip(params[:time2go])
-      redirect_to trip_path(@bart_trip)
+      redirect_to bart_trip_path(@bart_trip)
     else
       flash[:error] = "Trip creation error"
       render :new

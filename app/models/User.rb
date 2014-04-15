@@ -13,6 +13,6 @@ class User < ActiveRecord::Base
   end
 
   def trips_in_the_future
-    self.trips.where("recommended_leave_time > ?", Time.now)
+    self.bart_trips.where("recommended_leave_time > ?", Time.now)
   end
 end
