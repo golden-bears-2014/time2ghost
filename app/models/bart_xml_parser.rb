@@ -1,5 +1,5 @@
 class BartXMLParser
-  def self.get_route_number_from_parsed_xml(route_xml)
+  def self.get_route_number_from_xml(route_xml)
     Nokogiri::XML(route_xml).at_xpath('//leg').attributes["line"].value[-1]
   end
 

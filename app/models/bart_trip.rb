@@ -22,6 +22,10 @@ class BartTrip < ActiveRecord::Base
     self.save!
   end
 
+  def format_trip_message
+    "test formatting for trip message. leave in #{self.recommended_leave_time}"
+  end
+
   def get_trips_for_current_minute
     BartTrip.where("recommended_leave_time = ?", Time.now.change(:sec => 0))
   end
@@ -30,7 +34,6 @@ class BartTrip < ActiveRecord::Base
     format_fake_trip_walking_time
     format_fake_trip_minutes(minutes_until_ghosting)
   end
-
 
   def format_fake_trip_walking_time
     depart_station_obj = get_station(self.departure_station)
@@ -44,7 +47,6 @@ class BartTrip < ActiveRecord::Base
     fake_depart_time = (Time.now + minutes_until_ghosting.to_i.minutes + self.walking_time.to_i.minutes + 5.minutes).change(:sec => 0)
     self.update_attributes(:train_departing_time => fake_depart_time)
   end
-
 
 
   def find_closest_station(user_lat, user_long)

@@ -11,7 +11,7 @@ class TwilioMessage
 
   def self.send_all_texts_for_now
     trips = BartTrip.get_trips_for_current_minute
-    trips.each {|trip| TwilioModel.send_text(trip)}
+    trips.each {|trip| TwilioMessage.send_text(trip.trip_message)}
   end
 
   def self.text_test

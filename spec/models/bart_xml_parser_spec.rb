@@ -2,9 +2,9 @@ require 'spec_helper'
 require 'fixtures/fixtures'
 
 describe BartXMLParser do
-  context "#get_route_number_from_parsed_xml" do
+  context "#get_route_number_from_xml" do
     it "returns the correct route" do
-      expect(BartXMLParser.get_route_number_from_parsed_xml(ROUTE_XML)).to eq("2")
+      expect(BartXMLParser.get_route_number_from_xml(ROUTE_XML)).to eq("2")
     end
   end
 
