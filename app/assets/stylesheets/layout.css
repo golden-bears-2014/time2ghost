@@ -48,7 +48,7 @@ button{
   text-decoration: none;
 }
 
-.tripform form input[type=submit]{
+form input[type=submit]{
   background-color: #204987;
   color: white;
   padding: 20px;
