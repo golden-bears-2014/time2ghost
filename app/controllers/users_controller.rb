@@ -17,9 +17,9 @@ class UsersController < ApplicationController
 
   def create
     params[:user][:phone_number].gsub!(/[^0-9]/, "")
-    user = User.create params[:user]
-    if user.valid?
-      session[:user_id] = user.id
+    @user = User.new params[:user]
+    if @user.save
+      session[:user_id] = @user.id
       flash[:create] = "Account Created Successfully"
       redirect_to root_path
     else
