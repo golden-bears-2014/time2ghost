@@ -10,17 +10,15 @@ class BartXMLParser
     Nokogiri::XML(endpoint_xml).at_xpath('//destination').content
   end
 
+  # this works but needs refactoring and cleaning up
   def self.filter_realtime_departures_by_correct_route(realtime_xml, endpoints)
     path = Nokogiri::XML(realtime_xml).xpath('//etd')
     possible_departures = {}
     endpoints.each do |current_endpoint|
       times_for_this_endpoint = path.xpath("//abbreviation[contains(text(), '#{current_endpoint}')]").first.parent()
-      possible_departures[current_endpoint] = []
-      times_for_this_endpoint.search('minutes').each{|x| possible_departures[current_endpoint] << x.text}
+      times_for_this_endpoint.search('minutes').each{|x| possible_departures[x.text.to_i] = current_endpoint}
     end
-    # returns hash with endpoint as key and realtime departures as minutes
-    # i.e {"endpoint" => ["1", "2", "3"]}
-      possible_departures
+      possible_departures.sort_by{|k, v| k.to_i}
   end
 
   def self.parse_bart_stations_list(stations_xml)

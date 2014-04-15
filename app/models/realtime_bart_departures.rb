@@ -11,7 +11,7 @@ class RealtimeBartDepartures
   def get_departures
     get_route_names
     get_name_of_endpoint_stations_on_routes
-    @endpoint_and_departure_times = get_upcoming_realtime_departures
+    @endpoints_and_departure_times = get_upcoming_realtime_departures
   end
 
   def get_route_names
@@ -23,7 +23,6 @@ class RealtimeBartDepartures
     open(@url_builder.build_routes_api_call) {|xml| xml.read }
   end
 
-  # get endpoint for each possible line
   def get_name_of_endpoint_stations_on_routes
     endpoint_xml_array = get_endpoint_xml_array_from_bart_api
     @endpoints = []

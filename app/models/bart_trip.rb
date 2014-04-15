@@ -19,9 +19,18 @@ class BartTrip < ActiveRecord::Base
   end
 
   def get_depart_times_and_line
-    realtime_departures = RealtimeBartDepartures.new(self.departure_station, self.destination_station).get_departures
-    self.bart_line = realtime_departures[:endpoint]
-    @departures = realtime_departures[:departure_times]
+    @realtime_departures = RealtimeBartDepartures.new(self.departure_station, self.destination_station).get_departures
+    p @realtime_departures
+    puts "above here prank"
+    # self.bart_line = @realtime_departures[:endpoint]
+    # @departures = @realtime_departures[:departure_times]
+  end
+
+  # checks through the realtime departure hash
+  # to find the earliest possible trip that the user can make
+  def find_earliest_possible_departure_time
+    @realtime_departure
+
   end
 
   def get_minutes_until_train_departs # magic number 5 = get to the station 5 minutes early!
