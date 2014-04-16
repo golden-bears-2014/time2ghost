@@ -1,3 +1,8 @@
+# For your reference: this is not the greatest name.  Don't change it because
+# there's a lot of risk involved, but really it's "TotalJourney" or maybe a
+# "JourneyInvolvingABartRideAndWalking" or some better name...but this name
+# doesn't quite capture what's going on.  I would even think maybe a comment at
+# the top of this class would be helpful: what' this thing actually about?
 class BartTrip < ActiveRecord::Base
   attr_accessible :user_id, :departure_station, :destination_station, :walking_time, :directions,
   :train_departing_time, :bart_line, :recommended_leave_time, :current_location
@@ -25,6 +30,9 @@ class BartTrip < ActiveRecord::Base
 
   def get_minutes_until_train_departs # magic number 5 = get to the station 5 minutes early!
     puts @realtime_departures
+    # Look up a refactor called:  EXTRACT MAGIC NUMBER TO SYMBOLIC CONSTANT and
+    # apply on '5'.  Apply to all uses of '5' in this magical context in your
+    # app.
     @first_possible_departure = @realtime_departures.find { |depart_time| (depart_time.first.to_i - self.walking_time - 5) > 0 }
     if @first_possible_departure.nil?
       @first_possible_departure = @realtime_departures.last
