@@ -1,3 +1,5 @@
+# This model is still too big.  We can work on it wednesday, but it's too big,
+# too broad...too something
 class BartTrip < ActiveRecord::Base
   attr_accessible :user_id, :departure_station, :destination_station, :walking_time, :directions,
   :train_departing_time, :bart_line, :recommended_leave_time, :current_location

@@ -16,6 +16,9 @@ class UsersController < ApplicationController
   end
 
   def create
+    # What's going on here?  Why's this here.
+    # the commit 553f9221 does not explain why this is
+    # here
     params[:user][:phone_number].gsub!(/[^0-9]/, "")
     @user = User.new params[:user]
     if @user.save

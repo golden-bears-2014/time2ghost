@@ -1,5 +1,6 @@
 class BartXMLParser
   def self.get_route_numbers_from_xml(route_xml)
+    # Nope, each with object here please.
     routes = []
     Nokogiri::XML(route_xml).xpath('//leg').each {|leg| routes << leg.attributes["line"].value[-1]}
     routes.uniq!
@@ -10,6 +11,7 @@ class BartXMLParser
   end
 
   def self.filter_realtime_departures_by_correct_route(realtime_xml, endpoints)
+    # Y'know you can acutally also use each_with_object here...
     possible_departures = {}
     path_to_endpoints = Nokogiri::XML(realtime_xml).xpath('//etd')
     endpoints.each do |current_endpoint|

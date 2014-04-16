@@ -1,3 +1,4 @@
+# This is so much better.  Love your #initialize, love your BartURLBuilder
 class RealtimeBartDepartures
   require 'open-uri'
   attr_accessor :endpoint_and_departure_times

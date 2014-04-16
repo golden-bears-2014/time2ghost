@@ -1,6 +1,10 @@
 class TwilioMessage
-
+  # First of all: this is so much improved. Thank you.
+  #
+  #
+  # This is a weird method name
   def self.send_text(trip_message)
+    #indent
   @client = Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_AUTH'])
   @client.account.messages.create(
     :from => '+14155211220',

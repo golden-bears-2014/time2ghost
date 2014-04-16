@@ -1,6 +1,7 @@
 <div class="content">
 <div class="tripform">
     <%= link_to "Find Me", "#", remote: true, id: 'geolocateButton', :class => "homepage-button" %>
+    <%# can we extract a partial %>
   <%= form_for @bart_trip, :url => url_for(:controller => 'bart_trips', :action => 'create_fake') do |f| %>
     <%= f.label :current_location %>:
     <br>

@@ -1,3 +1,4 @@
+# Awesome.
 class StationBuilder
   require 'open-uri'
 

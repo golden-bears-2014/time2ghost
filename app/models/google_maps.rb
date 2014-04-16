@@ -8,10 +8,12 @@ class GoogleMaps
   end
 
   def get_total_walking_time
+    # Still ugly
     @parsed_response["routes"][0]["legs"][0]["duration"]["value"] / 60
   end
 
   def parse_directions
+    # Awesome using each_with_object
     @parsed_response["routes"][0]["legs"][0]["steps"].each_with_object([]) { |step, array| array << step["html_instructions"]}
   end
 

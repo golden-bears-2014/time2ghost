@@ -178,6 +178,48 @@ BartStations.prototype = {
     euclideanDistance: function(x1, y1, x2, y2) {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
     }
+
+    return differences;
+  },
+
+  findIndexOfSmallestElement: function(differencesArray) {
+    var smallest = differencesArray[0];
+    var smallestIndex = 0
+    for (var diffIndex in differencesArray) {
+      if (differencesArray[diffIndex] < smallest) {
+        smallest = differencesArray[diffIndex];
+        smallestIndex = diffIndex;
+      }
+    }
+
+    return smallestIndex;
+  },
+
+  euclideanDistance: function(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2))
+  }
+=======
+
+    return differences;
+  },
+
+  findIndexOfSmallestElement: function(differencesArray) {
+    var smallest = differencesArray[0];
+    var smallestIndex = 0
+    for (var diffIndex in differencesArray) {
+      if (differencesArray[diffIndex] < smallest) {
+        smallest = differencesArray[diffIndex];
+        smallestIndex = diffIndex;
+      }
+    }
+
+    return smallestIndex;
+  },
+
+  // PRO!  Damn, what a great name.
+  euclideanDistance: function(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2))
+  }
 }
 
 

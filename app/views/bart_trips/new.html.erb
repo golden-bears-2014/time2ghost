@@ -2,6 +2,8 @@
 <div class="tripform">
   <%= link_to "Find Me", "#", remote: true, id: 'geolocateButton', :class => "homepage-button" %><br>
 
+  <%# a partial would be sweet %>
+  <%# it's usually form_for(@trip) ... get the thing out of the controller%>
   <%= form_for BartTrip.new do |f| %>
     <%= f.label :current_location %>:
     <br>
