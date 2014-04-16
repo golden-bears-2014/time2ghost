@@ -2,12 +2,18 @@
 <div class="tripform">
   <%= link_to "Find Me", "#", remote: true, id: 'geolocateButton', :class => "homepage-button" %><br>
 
+
+  <%# no.  this should be an instance that's passed in%>
+  <%# no.  this should probably be in a partial, the form bit, that is.  convention is to extract it to something like _form.html.erb %>
+
   <%= form_for BartTrip.new do |f| %>
     <%= f.label :current_location %>:
     <br>
     <%= f.text_field :current_location, autofocus: true, placeholder: "Find Me!"%>
     <br>
 
+    <%# it should feel bad to be talking to models in your view.  have
+  Station.all be something assigned to an instance variable in the controller and have that value bubble down%>
     <%= f.label :departure_station %>:
     <%= f.collection_select(:departure_station, Station.all, :abbr, :name, :include_blank => true) %>
 <br>
@@ -19,3 +25,4 @@
 </div>
 </div>
 
+  <%#  fix your indenting!%>
