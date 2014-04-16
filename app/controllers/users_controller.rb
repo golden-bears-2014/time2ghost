@@ -16,6 +16,21 @@ class UsersController < ApplicationController
   end
 
   def create
+    # Many consider it a code smell to modify passed-in parameters.
+    # Rather than just update the params give the result a name
+    #
+    #
+    # cleaned_phone_number = params[:user][:phone_number].gsub(/[^0-9]/, "")
+    #
+    # Over and above that, could you pattern match this and store it as a
+    # string.
+    #
+    # Also, maybe this could be done as an extracted method
+    #
+    # which has the implementation of:
+    #
+    # "444-233-8888".scan(/\d{3}-\d{3}-\d{4}/).shift
+
     params[:user][:phone_number].gsub!(/[^0-9]/, "")
     @user = User.new params[:user]
     if @user.save
